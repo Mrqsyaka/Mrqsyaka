@@ -1,4 +1,6 @@
 ﻿#SingleInstance Force
+;hello
+
 !Shift:: 
 ^Shift:: 
 +Alt::
