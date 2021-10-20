@@ -32,6 +32,9 @@
 ;Win + Ctrl + S зберегти у Quick Notes
 ;Alt + Left\Right для зміни вкладок у Notepad++
 ;Ctrl + Shift + Alt + D:: вставити сьогоднішню дату
+;win + K:: папочка SA
+;Ctrl + Win + LButton:: програма для активних скріншотів
+; Win + Inrest:: папка з моїми проектами (програмач)
 #NoTrayIcon
 #SingleInstance Force
 #Persistent
