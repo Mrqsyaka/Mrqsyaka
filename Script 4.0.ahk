@@ -149,8 +149,14 @@ return
 #Del::FileRecycleEmpty
 
 ;Win + F:: папка F
-#sc21:: run F:\Programs
-^#sc21:: run C:\Temp
+#sc21:: 
+SendMessage, 0x50,, -0xF3FFBF7,, A ; colemak
+run F:\Programs
+return
+^#sc21:: 
+SendMessage, 0x50,, -0xF3FFBF7,, A ; colemak
+run C:\Temp
+Return
 
 ;Win + A:: відкрити за допомогою Notepad++
 #sc1e:: 
@@ -247,7 +253,10 @@ Loop, %ID%
    }
 Return
 ;Win + J:: папка завантажень
-#sc24::run "E:\Download"
+#sc24::
+SendMessage, 0x50,, -0xF3FFBF7,, A ; colemak
+run "E:\Download"
+return
 
 ;Win + Z:: сховати іконки
 #sc2c::
@@ -391,21 +400,15 @@ if WinActive("ahk_class Notepad++") or WinActive("ahk_class" Notepad++) or WinAc
 }
 return
 ;Alt + space:: пошук
-!Space::
- SendMessage, 0x50,, -0xF3FFBF7,, A ; colemak
-run, "F:\Programs\PowerToys\modules\launcher\PowerLauncher.exe"
+~!Space:: 
+sleep 30
+SendMessage, 0x50,, -0xF3FFBF7,, A ; colemak
 return
 
 
 #sc23::
-#sc56::
-#!sc20::
-#sc10d::
-#sc31::
 #sc22::
-#sc15::
 #sc32::
-#sc14f::
 #sc29::
 #sc11a::
 #sc11b::
@@ -416,21 +419,12 @@ sc46::
 
 msgbox,
 (
-Налаштувати
-Win + "+"
-Win + "-"
-Win + Ctrl + S
 Win + H
-Win + V
 Win + N
 Win + G 
-Win + K
 Win + Y
-Win + Insert
-Win + End
 Win + M
 Scroll Lock
-Alt + Backspace (CapsLock)
 )
 return
 
@@ -446,9 +440,6 @@ return
 #sc16::return
 ;Win + Ctrl + Alt + стрілка вверх:: перезапустити комп'ютер
 !#^Left::
-; Parameter #1: Pass 1 instead of 0 to hibernate rather than suspend.
-; Parameter #2: Pass 1 instead of 0 to suspend immediately rather than asking each application for permission.
-; Parameter #3: Pass 1 instead of 0 to disable all wake events.
 DllCall("PowrProf\SetSuspendState", "Int", 0, "Int", 1, "Int", 0)
 return
 
@@ -503,9 +494,6 @@ return
 }
 
 
-
-
-
 ; Num2:: створити Word файл
 sc50:: ;explorer - create new text file and open it with Notepad2
 run, "E:\Summertime\Молочка\Quick Note",, MAX
@@ -552,7 +540,7 @@ return
 ^sc50::run, "E:\Summertime\Молочка\Quick Note",, MAX
 
 ;Shift + Num1:: відкрити папку з збереженими AHK файлами
-^sc4f::run, "F:\Programs\Shortcut\New",, MAX
+^sc4f::run, "F:\Programs\Shortcut\",, MAX
 return
 
 ;Alt + Num2:: створити файл DOC в Google docs
@@ -576,13 +564,14 @@ TimeUntil(Hour, Min := 0, Sec := 0) { ; Hour must be in 24 hour format
       Return Result
    }
 }
-;Alt + ` Надіслати мій улюблений смайл
+;Alt + `:: Надіслати мій улюблений смайл
+;Ctrl + Alt + `:: Надіслати НЛО
 !sc29::
 send, 🙃
 return
 ^!sc29::send, 👽
 
-;Win + S Зберегти буфер у файл "English"
+;Win + S::  Зберегти буфер у файл "English"
 #sc1f::
 a = %clipboard%
 Send, {Control Down} c {Control Up}
@@ -590,15 +579,34 @@ FileAppend, %clipboard% `n, E:\Summertime\Молочка\Quick Note\English.txt,
 clipboard = %a%
 return
 
-;Win + V Зберегти буфер у файл "English" і пошукати в Longman
+;Win + V::  Зберегти буфер у файл "English" і пошукати в Longman
 #sc2f::
-a = %clipboard%
+a=%clipboard%
+if WinActive("ahk_exe chrome.exe")
+{
+b=1
+send, ^c
+send, !{tab}
+sleep 100	
+send, {tab}
+sleep 10
+send, %Clipboard%
+send, {f2}
+send, {home}
+SendMessage,0x50,,-0xF57FBDE
+return
+}
+send, ^c
 run, https://www.ldoceonline.com/dictionary/
 WinWaitActive, Longman
-Send, %a%
-return
+sleep 400
+Send, %Clipboard%
+sleep 100
+Send, {enter}
+clipboard = %a%
+b=2
 
-;Win + Ctrl + S зберегти у Quick Notes
+;Win + Ctrl + S::  зберегти у Quick Notes
 ^#sc1f::
 a = %clipboard%
 Send, {Control Down} c {Control Up}
@@ -628,9 +636,13 @@ sc45::send {Media_Play_Pause}
 Send, %A_DD%.%A_MM%.%A_YYYY%
 return
 
-;
+;незапрограмована кнопка, яка є тільки на зовнішній клавіатурі
 sc15d::msgbox, bind me
+
+;Insert:: програма Wolfram Alpha
 sc152:: run, "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Wolfram\Wolfram Mathematica 12.1.lnk"
+
+; Win + Inrest:: папка з моїми проектами (програмач)
 #sc152:: run, "E:\Education\My programs", Maximize
 
 ;Налаштування середньої клавіші
@@ -645,8 +657,13 @@ Else
 	send, {MButton}
 	}
 Return
+
+;Ctrl + Win + LButton:: програма для активних скріншотів
 ^#LButton:: run, "F:\Programs\WindowSnipping\WindowSnipping.ahk"
+
+;win + K:: папочка SA
 #sc25:: 
 SendMessage, 0x50,, -0xF3FFBF7,, A ; colemak
 run, "E:\Education\SA"
 return
+~#sc2d:: SendMessage, 0x50,, -0xF3FFBF7,, A ; colemak
