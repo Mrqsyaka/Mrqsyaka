@@ -35,6 +35,7 @@
 ;win + K:: папочка SA
 ;Ctrl + Win + LButton:: програма для активних скріншотів
 ; Win + Inrest:: папка з моїми проектами (програмач)
+;незапрограмована кнопка, яка є тільки на зовнішній клавіатурі
 #NoTrayIcon
 #SingleInstance Force
 #Persistent
