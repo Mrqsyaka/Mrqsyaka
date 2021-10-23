@@ -1,6 +1,7 @@
 ﻿#SingleInstance Force
 ;hello
 ;23.10.2021
+msgbox, hello my friend nice to meet you
 !Shift:: 
 ^Shift:: 
 +Alt::
