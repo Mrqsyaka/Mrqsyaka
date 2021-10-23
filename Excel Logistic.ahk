@@ -1,7 +1,7 @@
 ﻿#SingleInstance Force
 ;hello
 ;23.10.2021
-
+;t
 !Shift:: 
 ^Shift:: 
 +Alt::
