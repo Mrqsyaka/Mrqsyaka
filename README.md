@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @Mrqsyaka 🙃 
 - 👀 I’m interested in unix/linux, machine learning, natural language processing and process automation 
-- 🌱 I’m currently learning C++, Python, Java, AutoHotkey 
+- 🌱 I’m currently learning mostly Python, git, and docker
 - 📫 How to reach me palchevskyymarko@gmail.com 
 
 <!---
